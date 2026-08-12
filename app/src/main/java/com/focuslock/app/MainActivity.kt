@@ -2,6 +2,7 @@ package com.focuslock.app
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.TextView
@@ -31,9 +32,21 @@ class MainActivity : AppCompatActivity() {
         tvStatus = findViewById(R.id.tvStatus)
 
         btnStartTimer.setOnClickListener {
-            val mins = etMinutes.text.toString()
-            if (mins.isNotEmpty()) {
+            val minsText = etMinutes.text.toString()
+            if (minsText.isNotEmpty()) {
+                val mins = minsText.toIntOrNull() ?: 0
                 tvStatus.text = "$mins মিনিটের টাইমার চলছে..."
+
+                val serviceIntent = Intent(this, TimerService::class.java).apply {
+                    action = TimerService.ACTION_START_TIMER
+                    putExtra(TimerService.EXTRA_MINUTES, mins)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForegroundService(serviceIntent)
+                } else {
+                    startService(serviceIntent)
+                }
+
                 Toast.makeText(this, "টাইমার শুরু হয়েছে", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "মিনিট লিখুন", Toast.LENGTH_SHORT).show()
@@ -42,6 +55,10 @@ class MainActivity : AppCompatActivity() {
 
         btnStopTimer.setOnClickListener {
             tvStatus.text = "টাইমার বন্ধ হয়েছে"
+            val serviceIntent = Intent(this, TimerService::class.java).apply {
+                action = TimerService.ACTION_STOP_TIMER
+            }
+            startService(serviceIntent)
             Toast.makeText(this, "টাইমার বন্ধ", Toast.LENGTH_SHORT).show()
         }
 
@@ -53,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnExam.setOnClickListener {
-            Toast.makeText(this, "এক্সাম ফিচারটি শীঘ্রই আসছে!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "শব্দার্থ এক্সাম ফিচারটি শীঘ্রই আসছে!", Toast.LENGTH_SHORT).show()
         }
     }
 }
