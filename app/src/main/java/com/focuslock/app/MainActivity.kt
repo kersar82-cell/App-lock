@@ -1,6 +1,9 @@
 package com.focuslock.app
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etMinutes: TextInputEditText
     private lateinit var btnStartTimer: MaterialButton
     private lateinit var btnStopTimer: MaterialButton
+    private lateinit var btnBatterySettings: MaterialButton
+    private lateinit var btnExam: MaterialButton
     private lateinit var tvStatus: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         etMinutes = findViewById(R.id.etMinutes)
         btnStartTimer = findViewById(R.id.btnStartTimer)
         btnStopTimer = findViewById(R.id.btnStopTimer)
+        btnBatterySettings = findViewById(R.id.btnBatterySettings)
+        btnExam = findViewById(R.id.btnExam)
         tvStatus = findViewById(R.id.tvStatus)
 
         btnStartTimer.setOnClickListener {
@@ -36,6 +43,17 @@ class MainActivity : AppCompatActivity() {
         btnStopTimer.setOnClickListener {
             tvStatus.text = "টাইমার বন্ধ হয়েছে"
             Toast.makeText(this, "টাইমার বন্ধ", Toast.LENGTH_SHORT).show()
+        }
+
+        btnBatterySettings.setOnClickListener {
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            val uri = Uri.fromParts("package", packageName, null)
+            intent.data = uri
+            startActivity(intent)
+        }
+
+        btnExam.setOnClickListener {
+            Toast.makeText(this, "এক্সাম ফিচারটি শীঘ্রই আসছে!", Toast.LENGTH_SHORT).show()
         }
     }
 }
