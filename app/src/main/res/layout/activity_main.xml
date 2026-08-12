@@ -12,14 +12,12 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Header Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeWidth="0dp"
             app:cardBackgroundColor="#2196F3">
 
             <LinearLayout
@@ -31,31 +29,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="FocusLock 🔒"
+                    android:text="FocusLock Timer ⏱️"
                     android:textColor="@android:color/white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
-
+                
                 <TextView
                     android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="আপনার কাজের সুরক্ষা ও মনোযোগ বজায় রাখুন"
+                    android:text="টাইম সেট করে মনোযোগ দিন"
                     android:textColor="#E3F2FD"
                     android:textSize="13sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Permissions & Security Section -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="1dp"
-            app:strokeColor="#E0E0E0"
-            app:strokeWidth="1dp"
             app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
@@ -63,117 +57,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="জরুরি পারমিশন ও নিরাপত্তা"
-                    android:textColor="#212121"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnDeviceAdmin"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="১. Device Admin অন করুন"
-                    android:textAlignment="textStart"
-                    app:cornerRadius="8dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAccessibility"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="২. Accessibility Service অন করুন"
-                    android:textAlignment="textStart"
-                    app:cornerRadius="8dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnBatteryOptOut"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="৩. Battery Optimization বাদ দিন"
-                    android:textAlignment="textStart"
-                    app:cornerRadius="8dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSetPin"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="৪. PIN সেটিং করুন"
-                    android:textAlignment="textStart"
-                    app:cornerRadius="8dp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Main Timer Controls -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="1dp"
-            app:strokeColor="#E0E0E0"
-            app:strokeWidth="1dp"
-            app:cardBackgroundColor="@android:color/white">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="টাইমার সেটিংস"
-                    android:textColor="#212121"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="সময় নির্ধারণ করুন (মিনিট)"
-                    app:boxStrokeColor="#2196F3"
-                    app:boxStrokeWidth="2dp"
-                    app:hintTextColor="#2196F3">
+                    android:hint="সময় (মিনিট)"
+                    app:boxStrokeColor="#2196F3">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etMinutes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:textColor="#000000"
-                        android:textColorHint="#757575"
-                        android:textSize="16sp" />
+                        android:textColor="#000000" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSelectApps"
-                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="ব্লক করার অ্যাপস বেছে নিন"
-                    app:cornerRadius="8dp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvApps"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_marginTop="12dp"
-                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -187,10 +85,8 @@
                         android:layout_height="54dp"
                         android:layout_weight="1"
                         android:layout_marginEnd="4dp"
-                        android:text="টাইমার শুরু"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:cornerRadius="10dp"
+                        android:text="শুরু করুন"
+                        app:cornerRadius="8dp"
                         app:backgroundTint="#2196F3"/>
 
                     <com.google.android.material.button.MaterialButton
@@ -200,11 +96,10 @@
                         android:layout_height="54dp"
                         android:layout_weight="1"
                         android:layout_marginStart="4dp"
-                        android:text="টাইমার বন্ধ"
-                        android:textSize="14sp"
+                        android:text="বন্ধ করুন"
                         android:textColor="#D32F2F"
                         app:strokeColor="#D32F2F"
-                        app:cornerRadius="10dp"/>
+                        app:cornerRadius="8dp"/>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
