@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ফোন লক করার জন্য -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <!-- ফোরগ্রাউন্ড টাইমার সার্ভিস চালানোর জন্য -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- এক্সাক্ট টাইমে অ্যালার্ম ফায়ার করার জন্য -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <!-- ব্যাটারি অপ্টিমাইজেশনের বাইরে থাকার জন্য (টাইমার যেন বন্ধ না হয়ে যায়) -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.FocusLock"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".PinActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FocusLock.Pin" />
+
+        <!-- টাইমার শেষে ফোন লক করা এবং সিলেক্টেড অ্যাপ ব্লক করার সার্ভিস -->
+        <service
+            android:name=".TimerService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="focus-timer-lock" />
+        </service>
+
+        <!-- ব্লকলিস্টের অ্যাপ খোলা মাত্র detect করে হোমে পাঠানোর সার্ভিস -->
+        <service
+            android:name=".BlockAccessibilityService"
+            android:exported="false"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- Device Admin: এটা অ্যাকটিভ থাকলে (১) DevicePolicyManager.lockNow() দিয়ে ফোন লক করা যায়
+             (২) অ্যাপ আনইনস্টল করার আগে বাধ্যতামূলক "deactivate admin" করতে হয় (এক্সট্রা বাধা) -->
+        <receiver
+            android:name=".LockAdminReceiver"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_receiver" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+</manifest>
