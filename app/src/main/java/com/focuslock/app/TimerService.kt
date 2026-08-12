@@ -16,6 +16,7 @@ class TimerService : Service() {
         const val ACTION_START_TIMER = "com.focuslock.app.ACTION_START_TIMER"
         const val ACTION_STOP_TIMER = "com.focuslock.app.ACTION_STOP_TIMER"
         const val EXTRA_MINUTES = "extra_minutes"
+        const val EXTRA_DURATION_MILLIS = "extra_duration_millis"
         const val CHANNEL_ID = "FocusLockTimerChannel"
         const val NOTIFICATION_ID = 1001
     }
@@ -26,7 +27,9 @@ class TimerService : Service() {
         when (intent?.action) {
             ACTION_START_TIMER -> {
                 val minutes = intent.getIntExtra(EXTRA_MINUTES, 0)
-                startForegroundServiceWithNotification(minutes)
+                val durationMillis = intent.getLongExtra(EXTRA_DURATION_MILLIS, minutes.toLong() * 60 * 1000)
+                val displayMins = if (minutes > 0) minutes else (durationMillis / 60000).toInt()
+                startForegroundServiceWithNotification(displayMins)
             }
             ACTION_STOP_TIMER -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
