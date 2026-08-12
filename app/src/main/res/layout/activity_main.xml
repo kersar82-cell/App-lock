@@ -66,7 +66,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ضروری পারমিশন স্ট্যাটাস"
+                    android:text="জরুরি পারমিশন স্ট্যাটাস"
                     android:textColor="#212121"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -134,7 +134,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSelectApps"
-                    style="@style/Widget.MaterialComponents.Button.TonalButton"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
