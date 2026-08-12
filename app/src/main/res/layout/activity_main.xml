@@ -1,171 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="#F4F6F8"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FocusLock"
-            android:textColor="@color/text_primary"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="18dp"
-            android:text="টাইমার শেষে ফোন অটো-লক, PIN ছাড়া বন্ধ করা যাবে না"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp" />
-
-        <!-- স্ট্যাটাস কার্ড -->
-        <LinearLayout
+        <!-- Header Card -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_card"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="#2196F3">
 
-            <TextView
-                android:id="@+id/tvStatus"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="4dp"
-                android:text="স্ট্যাটাস লোড হচ্ছে..."
-                android:textColor="@color/text_primary"
-                android:textSize="14sp" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        <!-- পারমিশন সেটআপ -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:text="১. প্রথমবার সেটআপ"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FocusLock 🔒"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSetPin"
-            style="@style/OutlineButton"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="আপনার কাজের সুরক্ষা ও মনোযোগ বজায় রাখুন"
+                    android:textColor="#E3F2FD"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Permissions Section -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="🔑  PIN সেট করুন" />
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:strokeColor="#E0E0E0"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@android:color/white">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDeviceAdmin"
-            style="@style/OutlineButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="🔒  Device Admin চালু করুন" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnAccessibility"
-            style="@style/OutlineButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="🛡️  Accessibility চালু করুন" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBatteryOptOut"
-            style="@style/OutlineButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="🔋  ব্যাটারি অপ্টিমাইজেশন বন্ধ করুন" />
-
-        <!-- টাইমার -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="10dp"
-            android:text="২. টাইমার সেট করুন"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/etMinutes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_input"
-            android:hint="কত মিনিট পর ফোন লক হবে? (যেমনঃ 30)"
-            android:inputType="number"
-            android:textColor="@color/text_primary"
-            android:textColorHint="@color/text_secondary"
-            android:textSize="15sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnStartTimer"
-                style="@style/RoundButton"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/primary"
-                android:text="▶️  শুরু করুন" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnStopTimer"
-                style="@style/RoundButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/danger"
-                android:text="⏹️  বন্ধ করুন (PIN)" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ضروری পারমিশন স্ট্যাটাস"
+                    android:textColor="#212121"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
 
-        <!-- অ্যাপ ব্লকলিস্ট -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="6dp"
-            android:text="৩. কোন অ্যাপগুলো ব্লক থাকবে"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDeviceAdmin"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="১. Device Admin অন করুন"
+                    android:textAlignment="textStart"
+                    app:cornerRadius="8dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="টাইমার চলাকালীন সিলেক্ট করা অ্যাপ খুললেই সাথে সাথে হোমে ফিরিয়ে দেওয়া হবে"
-            android:textColor="@color/text_secondary"
-            android:textSize="12sp" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAccessibility"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="২. Accessibility Service অন করুন"
+                    android:textAlignment="textStart"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvApps"
+        <!-- Main Timer & Controls -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/bg_card"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"
-            android:padding="4dp" />
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:strokeColor="#E0E0E0"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="টাইমার সেটিংস"
+                    android:textColor="#212121"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="সময় নির্ধারণ করুন (মিনিট)">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTimerMinutes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSelectApps"
+                    style="@style/Widget.MaterialComponents.Button.TonalButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="ব্লক করার অ্যাপস বেছে নিন"
+                    app:cornerRadius="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartTimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="16dp"
+                    android:text="টাইমার শুরু করুন"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp"
+                    app:backgroundTint="#2196F3"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</ScrollView>
